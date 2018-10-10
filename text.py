@@ -7,7 +7,7 @@ TEXT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique e
 AQUA = (0,255,255)
 BANANA = (227, 207, 87)
 WHITE = (255, 255, 255)
-GREY = (169,169,169)
+GREY = (128,128,128)
 
 
 
