@@ -7,6 +7,8 @@ TEXT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique e
 AQUA = (0,255,255)
 BANANA = (227, 207, 87)
 WHITE = (255, 255, 255)
+GREY = (169,169,169)
+
 
 
 def text_to_screen(screen, text, x, y, size=20):
