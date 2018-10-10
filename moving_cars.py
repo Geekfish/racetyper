@@ -2,7 +2,7 @@ import sys
 import pygame
 import random
 
-from text import AQUA, BANANA, WHITE, text_to_screen, TEXT
+from text import text_to_screen, TEXT
 
 pygame.init()
 
@@ -28,11 +28,8 @@ while 1:
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
-            print(event)
-
-    pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_SPACE]:
-        text = text[1:]
+            if text[0] == event.unicode:
+                text = text[1:]
 
 
 
