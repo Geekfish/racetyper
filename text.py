@@ -11,13 +11,20 @@ WHITE = (255, 255, 255)
 
 def text_to_screen(screen, text, x, y, size=20):
     words = text.split()
-    first_letter = words[0][0]
-    first_word_rest = words[0][1:]
-    rest = " " + " ".join(words[1:])
+    if text.startswith(" "):
+        first_letter = " "
+        first_bg = AQUA
+        first_word_rest = ""
+        rest = " ".join(words[0:])
+    else:
+        first_bg = None
+        first_letter = words[0][0]
+        first_word_rest = words[0][1:]
+        rest = " " + " ".join(words[1:])
 
     font = pygame.font.SysFont('Arial', size)
 
-    first_letter_rend = font.render(first_letter, True, AQUA)
+    first_letter_rend = font.render(first_letter, True, AQUA, first_bg)
     screen.blit(first_letter_rend, (x, y))
     x += first_letter_rend.get_width()
 
@@ -27,30 +34,3 @@ def text_to_screen(screen, text, x, y, size=20):
 
     rest_rend = font.render(rest, True, WHITE)
     screen.blit(rest_rend, (x, y))
-
-
-def main():
-    screen = pygame.display.set_mode((800, 600))
-    done = False
-    text = TEXT
-
-    clock = pygame.time.Clock()
-
-    while not done:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
-
-        pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_SPACE]:
-            text = text[1:]
-
-        screen.fill((0, 0, 0))
-
-        text_to_screen(screen, text, 160, 30)
-
-        pygame.display.flip()
-        clock.tick(60)
-
-#
-# main()

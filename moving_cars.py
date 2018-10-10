@@ -2,7 +2,7 @@ import sys
 import pygame
 import random
 
-from text import AQUA, BANANA, WHITE, text_to_screen, TEXT
+from text import text_to_screen, TEXT
 
 
 class Lines:
@@ -45,14 +45,13 @@ while 1:
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
-            print(event)
-
-    pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_SPACE]:
-        if len(text) < 20:
-            text += '     ..      ' + lines.next
-        text = text[1:]
-
+            # pressed = pygame.key.get_pressed()
+            if len(text) < 20:
+                text += '     ..      ' + lines.next
+            # text = text[1:]
+            if text[0] == event.unicode:
+                text = text[1:]
+                car1_x -= 8
 
 
     # ballrect = ballrect.mo
@@ -67,5 +66,4 @@ while 1:
     screen.blit(car2, (car2_x, car2_y))
     text_to_screen(screen, text, 160, 30)
     pygame.display.flip()
-    car1_x -= 1
-    car2_x -= random.choice((0, 1, 1, 2))
+    car2_x -= random.choice((0, 0, 0, 1, 1, 0, 0, 2, 3, 0, 1, 0))
