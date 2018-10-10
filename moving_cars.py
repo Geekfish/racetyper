@@ -17,16 +17,20 @@ class Lines:
         self.line_number += 1
         return self.lines[self.line_number]
 
+from text import AQUA, BANANA, WHITE, GREY, text_to_screen, TEXT
 
 pygame.init()
 
 size = width, height = 1024, 768
+
+text_posx, text_posy = (60, 330)
 
 screen = pygame.display.set_mode(size)
 
 car1 = pygame.image.load("car1.png")
 car2 = pygame.image.load("car2.png")
 background = pygame.image.load("background.png")
+
 
 car1_y = 450
 car1_x = width - 150
@@ -47,11 +51,11 @@ while 1:
         if event.type == pygame.KEYDOWN:
             # pressed = pygame.key.get_pressed()
             if len(text) < 20:
-                text += '     ..      ' + lines.next
+                text += ' .. ' + lines.next
             # text = text[1:]
             if text[0] == event.unicode:
                 text = text[1:]
-                car1_x -= 8
+                car1_x -= 12
 
 
     # ballrect = ballrect.mo
@@ -64,6 +68,9 @@ while 1:
     screen.blit(background, (0, 0))
     screen.blit(car1, (car1_x, car1_y))
     screen.blit(car2, (car2_x, car2_y))
-    text_to_screen(screen, text, 160, 30)
+
+    pygame.draw.rect(screen, GREY, [text_posx, text_posy, width, 30], 0)
+
+    text_to_screen(screen, text, text_posx, text_posy)
     pygame.display.flip()
     car2_x -= random.choice((0, 0, 0, 1, 1, 0, 0, 2, 3, 0, 1, 0))
