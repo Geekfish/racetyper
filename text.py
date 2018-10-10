@@ -52,5 +52,5 @@ def main():
         pygame.display.flip()
         clock.tick(60)
 
-
-main()
+#
+# main()
